@@ -1,0 +1,56 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      - echo Test started on `date`
+      - mvn clean compile test
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn war:exploded
+  post_build:
+    commands:
+      - echo Entering post_build phase...
+      - echo Build completed on `date`
+      - mv target/ROOT .
+artifacts:
+  type: zip
+  files:
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/Application.class'
+    - 'ROOT/WEB-INF/classes/com/aws/codestar/projecttemplates/controller/HelloWorldController.class'
+    - 'ROOT/WEB-INF/lib/classmate-1.3.3.jar'
+    - 'ROOT/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar'
+    - 'ROOT/WEB-INF/lib/jackson-annotations-2.8.5.jar'
+    - 'ROOT/WEB-INF/lib/jackson-core-2.8.5.jar'
+    - 'ROOT/WEB-INF/lib/jackson-databind-2.8.5.jar'
+    - 'ROOT/WEB-INF/lib/jboss-logging-3.3.0.Final.jar'
+    - 'ROOT/WEB-INF/lib/jcl-over-slf4j-1.7.22.jar'
+    - 'ROOT/WEB-INF/lib/json-20180130.jar'
+    - 'ROOT/WEB-INF/lib/jul-to-slf4j-1.7.22.jar'
+    - 'ROOT/WEB-INF/lib/log4j-over-slf4j-1.7.22.jar'
+    - 'ROOT/WEB-INF/lib/logback-classic-1.1.8.jar'
+    - 'ROOT/WEB-INF/lib/logback-core-1.1.8.jar'
+    - 'ROOT/WEB-INF/lib/slf4j-api-1.7.22.jar'
+    - 'ROOT/WEB-INF/lib/snakeyaml-1.17.jar'
+    - 'ROOT/WEB-INF/lib/spring-aop-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-beans-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-autoconfigure-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-starter-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-starter-logging-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-starter-tomcat-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-boot-starter-web-1.4.3.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-context-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-core-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-expression-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-web-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/spring-webmvc-4.3.5.RELEASE.jar'
+    - 'ROOT/WEB-INF/lib/tomcat-embed-core-8.5.6.jar'
+    - 'ROOT/WEB-INF/lib/tomcat-embed-el-8.5.6.jar'
+    - 'ROOT/WEB-INF/lib/tomcat-embed-websocket-8.5.6.jar'
+    - 'ROOT/WEB-INF/lib/validation-api-1.1.0.Final.jar'
